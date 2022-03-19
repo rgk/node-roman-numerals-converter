@@ -1,0 +1,32 @@
+import test from 'tape';
+import nrmc from '../index.js';
+
+test('I returns 1.', (t) => {
+  t.equal(nrmc("I"), 1);
+
+  t.end();
+});
+
+test('IV returns 4.', (t) => {
+  t.equal(nrmc("IV"), 4);
+
+  t.end();
+});
+
+test('MIX returns 1009.', (t) => {
+  t.equal(nrmc("MIX"), 1009);
+
+  t.end();
+});
+
+test('MDCCLXXVI returns 1776.', (t) => {
+  t.equal(nrmc("MDCCLXXVI"), 1776);
+
+  t.end();
+});
+
+test('MMXIX returns 2019.', (t) => {
+  t.equal(nrmc("MMXIX"), 2019);
+
+  t.end();
+});
