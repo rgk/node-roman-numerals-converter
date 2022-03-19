@@ -8,18 +8,14 @@ const romanValues = new Map([
   ["M", 1000]
 ]);
 
-export default (romanText) => {
-  if (typeof romanText !== "string") return "Must be a string.";
+export default (romanNumerals) => {
+  if (typeof romanNumerals !== "string") return "Must be a string.";
 
   const parts = [];
 
-  for (let i = romanText.length, part = 0, last = 0, value = 0; i; i--) {
-    if (value = romanValues.get(romanText[i - 1])) {
-      if (last > value) {
-        part -= value;
-      } else {
-        part += value;
-      }
+  for (let i = romanNumerals.length, part = 0, last = 0, value = 0; i; i--) {
+    if (value = romanValues.get(romanNumerals[i - 1])) {
+      part += (last > value) ? value * -1 : value;
 
       last = value;
     }
