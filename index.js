@@ -18,7 +18,7 @@ export default (romanNumerals) => {
       part += (last > value) ? value * -1 : value;
 
       last = value;
-    }
+    } else return "Invalid";
 
     if (last < part || !(i - 1)) {
       parts.push(part);
