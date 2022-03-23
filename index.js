@@ -13,16 +13,13 @@ export default (romanNumerals) => {
 
   const parts = [];
 
-  for (let i = romanNumerals.length, part = 0, last = 0, value = 0; i; i--) {
+  for (let i = romanNumerals.length, part = 0, value = 0, last = 0; i; i--, last = value) {
     if (value = romanValues.get(romanNumerals[i - 1])) {
       part += (last > value) ? value * -1 : value;
-
-      last = value;
     } else return "Invalid";
 
     if (last < part || !(i - 1)) {
-      parts.push(part);
-      part = 0;
+      part = parts.push(part) - parts.length;
     }
   }
 
