@@ -8,7 +8,7 @@ const romanValues = new Map([
   ["M", 1000]
 ]);
 
-export default (romanNumerals) => {
+export default (romanNumerals, reduce = false) => {
   if (typeof romanNumerals !== "string") return "Must be a string.";
 
   const parts = [];
@@ -23,5 +23,18 @@ export default (romanNumerals) => {
     }
   }
 
-  return parts.reduce((a,b) => a + b, 0);
+  const total = parts.reduce((a,b) => a + b, 0);
+
+  if (!reduce) return total;
+
+  const digits = Math.ceil(Math.log10(total + 1));
+
+  const numbers = [];
+
+  for (let i = 0, divisible = 1; i < digits; i++) {
+    numbers.push(Math.trunc(total / divisible % 10));
+    divisible = divisible * 10;
+  }
+
+  return numbers;
 };
