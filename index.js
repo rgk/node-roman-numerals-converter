@@ -27,14 +27,27 @@ export default (romanNumerals, reduce = false) => {
 
   if (!reduce) return total;
 
-  const digits = Math.ceil(Math.log10(total + 1));
+  let sum = 0;
+  let reduced = "";
 
-  const numbers = [];
+  romanValues.forEach((value, key, map) => {
+    let amount = (total - sum) / value;
+    if (amount) {
+      amount = amount < 3 ? amount : 3;
+      sum += value * Math.trunc(amount);
+      reduced += key.repeat(amount);
 
-  for (let i = 0, divisible = 1; i < digits; i++) {
-    numbers.push(Math.trunc(total / divisible % 10));
-    divisible = divisible * 10;
-  }
+      romanValues.forEach((valueMinus, keyMinus, mapMinus) => {
+        let newValue = value - valueMinus;
+        if (!newValue || value <= valueMinus || newValue === valueMinus) return;
 
-  return numbers;
+        if (sum + newValue <= total) {
+          sum += newValue;
+          reduced += keyMinus + key;
+        }
+      });
+    }
+  });
+
+  return reduced;
 };
