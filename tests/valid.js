@@ -31,6 +31,12 @@ test('MMXIX returns 2019.', (t) => {
   t.end();
 });
 
+test('VIV returns IX when reduced.', (t) => {
+  t.equal(nrmc("VIV", true), "IX");
+
+  t.end();
+});
+
 test('MMVLXIV returns MMLIX when reduced.', (t) => {
   t.equal(nrmc("MMVLXIV", true), "MMLIX");
 
