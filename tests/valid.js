@@ -30,3 +30,9 @@ test('MMXIX returns 2019.', (t) => {
 
   t.end();
 });
+
+test('MMVLXIV returns MMLIX when reduced.', (t) => {
+  t.equal(nrmc("MMVLXIV", true), "MMLIX");
+
+  t.end();
+});
