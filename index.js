@@ -38,8 +38,8 @@ export default (romanNumerals, reduce = false) => {
       reduced += key.repeat(amount);
 
       romanValues.forEach((valueMinus, keyMinus, mapMinus) => {
-        let newValue = value - valueMinus;
-        if (!newValue || value <= valueMinus || newValue === valueMinus) return;
+        const newValue = value - valueMinus;
+        if (value <= valueMinus || newValue === valueMinus) return;
 
         if (sum + newValue <= total) {
           sum += newValue;
