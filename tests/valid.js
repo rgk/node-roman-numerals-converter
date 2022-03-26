@@ -42,3 +42,9 @@ test('MMVLXIV returns MMLIX when reduced.', (t) => {
 
   t.end();
 });
+
+test('MMMDDDCCCLLLXXXVVVIII returns MMMCMLMCXLVIII when reduced.', (t) => {
+  t.equal(nrmc("MMMDDDCCCLLLXXXVVVIII", true), "MMMCMLMCXLVIII");
+
+  t.end();
+});
