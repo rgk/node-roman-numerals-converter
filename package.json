@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "description": "Convert roman numeral strings into integers.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/rgk/node-roman-numerals-converter.git"
   },
   "scripts": {
-    "test-verify": "node ./tests/verify.js",
+    "test-valid": "node ./tests/valid.js",
+    "test-invalid": "node ./tests/invalid.js"
   },
   "author": "rgk",
   "license": "MIT",
