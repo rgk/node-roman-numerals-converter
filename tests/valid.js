@@ -48,3 +48,9 @@ test('MMMDDDCCCLLLXXXVVVIII returns MMMCMLMCXLVIII when reduced.', (t) => {
 
   t.end();
 });
+
+test('19 returns XIX.', (t) => {
+  t.equal(nrmc(19), "XIX");
+
+  t.end();
+});
