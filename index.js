@@ -36,7 +36,7 @@ export default (romanNumerals, reduce = false) => {
 
   romanValues.forEach((value, key, map) => {
     let amount = (total - sum) / value;
-    if (amount) {
+    if (amount > 0) {
       amount = amount < 3 ? amount : 3;
       sum += value * Math.trunc(amount);
       optimize += key.repeat(amount);
@@ -53,5 +53,5 @@ export default (romanNumerals, reduce = false) => {
     }
   });
 
-  return optimize;
+  return optimize ? optimize: "No Output";
 };
