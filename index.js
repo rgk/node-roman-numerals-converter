@@ -41,9 +41,9 @@ export default (romanNumerals, reduce = false) => {
     if (amount > 0) {
       location++;
 
-      amount = amount < 3 ? amount : 3;
+      amount = amount < 3 ? Math.trunc(amount) : 3;
 
-      sum += value * Math.trunc(amount);
+      sum += value * amount;
 
       optimize += key.repeat(amount);
 
@@ -66,5 +66,5 @@ export default (romanNumerals, reduce = false) => {
     }
   });
 
-  return optimize ? optimize: "No Output";
+  return optimize ? optimize : "No Output";
 };
