@@ -18,3 +18,15 @@ test('"X V" returns "Invalid".', (t) => {
 
   t.end();
 });
+
+test('0 returns "No Output".', (t) => {
+  t.equal(nrmc(0), "No Output");
+
+  t.end();
+});
+
+test('-1 returns "No Output".', (t) => {
+  t.equal(nrmc(-1), "No Output");
+
+  t.end();
+});
