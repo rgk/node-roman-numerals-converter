@@ -1,7 +1,7 @@
 {
   "name": "node-roman-numerals-converter",
   "version": "1.0.0",
-  "description": "Convert roman numeral strings into integers.",
+  "description": "Convert roman numeral strings into integers or integers into roman numeral strings.",
   "main": "index.js",
   "repository": {
     "type": "git",
