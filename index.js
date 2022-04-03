@@ -35,7 +35,7 @@ export default (romanNumerals, reduce = false) => {
   let optimize = "";
   let location = 0;
 
-  romanValues.forEach((value, key, map) => {
+  romanValues.forEach((value, key) => {
     let amount = (total - sum) / value;
 
     if (amount > 0) {
@@ -44,12 +44,10 @@ export default (romanNumerals, reduce = false) => {
       amount = amount < 3 ? Math.trunc(amount) : 3;
 
       sum += value * amount;
-
       optimize += key.repeat(amount);
 
       let distance = 0;
-
-      romanValues.forEach((valueMinus, keyMinus, mapMinus) => {
+      romanValues.forEach((valueMinus, keyMinus) => {
         distance++;
 
         if (
