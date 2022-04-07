@@ -8,6 +8,15 @@ const romanValues = new Map([
   ["I", 1]
 ]);
 
+const calculateKey = () => {
+  const keyArray = [];
+  romanValue.forEach(( value, key ) => {
+    keyArray.push([ key, value ]);
+  });
+
+  return keyArray;
+}
+
 export default (romanNumerals, reduce = false) => {
   let total = 0;
 
