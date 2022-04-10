@@ -10,9 +10,7 @@ const romanValues = new Map([
 
 const calculateKey = () => {
   const keyArray = [];
-  romanValues.forEach(( value, key ) => {
-    keyArray.push([ key, value ]);
-  });
+  romanValues.forEach(( value, key ) => keyArray.push([ key, value ]));
 
   return keyArray;
 }
