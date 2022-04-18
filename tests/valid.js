@@ -54,3 +54,10 @@ test('49 returns XLIX.', (t) => {
 
   t.end();
 });
+
+
+test('489 returns CDLXXXIX.', (t) => {
+  t.equal(nrmc(489), "CDLXXXIX");
+
+  t.end();
+});
