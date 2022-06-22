@@ -69,5 +69,5 @@ export default (romanNumerals, reduce = false) => {
     } else break;
   }
 
-  return optimize ? optimize : "No Output";
+  return optimize || "No Output";
 };
