@@ -26,9 +26,7 @@ export default (romanNumerals, reduce = false) => {
         part += (last > value) ? value * -1 : value;
       } else return "Invalid";
 
-      if (last < part || !(i - 1)) {
-        part = parts.push(part) - parts.length;
-      }
+      if (last < part || !(i - 1)) part = parts.push(part) - parts.length;
     }
 
     total = parts.reduce((a,b) => a + b, 0);
@@ -45,28 +43,28 @@ export default (romanNumerals, reduce = false) => {
   for (const [key, value] of romanValues) {
     let amount = (total - sum) / value;
 
-    if (amount > 0) {
-      location++;
+    if (amount <= 0) break;
 
-      amount = amount < 3 ? Math.trunc(amount) : 3;
+    location++;
 
-      sum += value * amount;
-      optimize += key.repeat(amount);
+    amount = amount < 3 ? Math.trunc(amount) : 3;
 
-      let distance = 0;
-      for (const [keyMinus, valueMinus] of romanValues) {
-        distance++;
+    sum += value * amount;
+    optimize += key.repeat(amount);
 
-        if (location < distance - 2) break;
-        if (location >= distance || (location % 2 != 0 && distance % 2 == 0)) continue;
+    let distance = 0;
+    for (const [keyMinus, valueMinus] of romanValues) {
+      distance++;
 
-        const newValue = value - valueMinus;
-        if (sum + newValue <= total) {
-          sum += newValue;
-          optimize += keyMinus + key;
-        }
+      if (location < distance - 2) break;
+      if (location >= distance || (location % 2 != 0 && distance % 2 == 0)) continue;
+
+      const newValue = value - valueMinus;
+      if (sum + newValue <= total) {
+        sum += newValue;
+        optimize += keyMinus + key;
       }
-    } else break;
+    }
   }
 
   return optimize || "No Output";
