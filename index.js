@@ -18,7 +18,7 @@ const calculateKey = () => {
 export default (romanNumerals, reduce = false) => {
   let total = 0;
 
-  if (typeof romanNumerals === "string") {
+  if (typeof romanNumerals === "string") { // Convert to number.
     const parts = [];
 
     for (let i = romanNumerals.length, part = 0, value = 0, last = 0; i; i--, last = value) {
@@ -32,7 +32,7 @@ export default (romanNumerals, reduce = false) => {
     total = parts.reduce((a,b) => a + b, 0);
 
     if (!reduce) return total;
-  } else if (typeof romanNumerals === "number") {
+  } else if (typeof romanNumerals === "number") { // Convert to roman numeral string.
     total = romanNumerals;
   }
 
@@ -60,10 +60,9 @@ export default (romanNumerals, reduce = false) => {
       if (location >= distance || (location % 2 != 0 && distance % 2 == 0)) continue;
 
       const newValue = value - valueMinus;
-      if (sum + newValue <= total) {
-        sum += newValue;
-        optimize += keyMinus + key;
-      }
+      if (sum + newValue > total) continue;
+      sum += newValue;
+      optimize += keyMinus + key;
     }
   }
 
