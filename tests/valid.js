@@ -43,6 +43,13 @@ test('MMVLXIV returns MMLIX when reduced.', (t) => {
   t.end();
 });
 
+
+test('MMMCMXCIX returns 3999.', (t) => {
+  t.equal(nrmc("MMMCMXCIX"), 3999);
+
+  t.end();
+});
+
 test('19 returns XIX.', (t) => {
   t.equal(nrmc(19), "XIX");
 
@@ -54,10 +61,17 @@ test('49 returns XLIX.', (t) => {
 
   t.end();
 });
-
+MMMCMXCIX
 
 test('489 returns CDLXXXIX.', (t) => {
   t.equal(nrmc(489), "CDLXXXIX");
+
+  t.end();
+});
+
+
+test('3999 returns MMMCMXCIX.', (t) => {
+  t.equal(nrmc(3999), "MMMCMXCIX");
 
   t.end();
 });
