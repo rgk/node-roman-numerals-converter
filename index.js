@@ -8,9 +8,9 @@ const romanValues = new Map([
   ["I", 1]
 ]);
 
-const calculateKey = () => {
+const calculateKeys = values => {
   const keyArray = [];
-  romanValues.forEach(( value, key ) => keyArray.push([ key, value ]));
+  values.forEach(( value, key ) => keyArray.push([ key, value ]));
 
   return keyArray;
 }
@@ -29,6 +29,7 @@ export default (romanNumerals, reduce = false) => {
       if (last < part || !(i - 1)) part = parts.push(part) - parts.length;
     }
 
+    // Add it all up.
     total = parts.reduce((a,b) => a + b, 0);
 
     if (!reduce) return total;
@@ -39,6 +40,8 @@ export default (romanNumerals, reduce = false) => {
   let sum = 0;
   let optimize = "";
   let location = 0;
+
+  const romanArray = calculateKeys(romanValues);
 
   for (const [key, value] of romanValues) {
     let amount = (total - sum) / value;
