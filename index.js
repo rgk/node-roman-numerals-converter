@@ -21,6 +21,7 @@ export default (romanNumerals, reduce = false) => {
   if (typeof romanNumerals === "string") { // Convert to number.
     const parts = [];
 
+    // Break the roman numeral string into parts and convert them to integers.
     for (let i = romanNumerals.length, part = 0, value = 0, last = 0; i; i--, last = value) {
       if (value = romanValues.get(romanNumerals[i - 1])) {
         part += (last > value) ? value * -1 : value;
@@ -39,33 +40,35 @@ export default (romanNumerals, reduce = false) => {
 
   let sum = 0;
   let optimize = "";
-  let location = 0;
 
+  // Produces an array for a more effecient loop.
   const romanArray = calculateKeys(romanValues);
 
-  for (const [key, value] of romanValues) {
-    let amount = (total - sum) / value;
+  for (let i = 0; i < romanArray.length; i++) {
+    let amount = (total - sum) / romanArray[i][1];
 
+    // Stop when no amount is remaining.
     if (amount <= 0) break;
 
-    location++;
-
+    // Only allow the roman numeral character to be used 3 times in a row.
     amount = amount < 3 ? Math.trunc(amount) : 3;
 
-    sum += value * amount;
-    optimize += key.repeat(amount);
+    sum += romanArray[i][1] * amount;
+    optimize += romanArray[i][0].repeat(amount);
 
-    let distance = 0;
-    for (const [keyMinus, valueMinus] of romanValues) {
-      distance++;
+    // This loop is for reduces characters, effecient lookup to the roman numeral and lower only.
+    for (let j = i + 1; j < romanArray.length; j++) {
+      // You can only minus roman numerals that are 2 indexes above.
+      if (j - i == 2) break;
+      
+      // If a roman numeral index is even, you can not minus a negative index roman numeral, for example VX should always be just V.
+      if (!(i % 2) && j % 2) continue;
 
-      if (location < distance - 2) break;
-      if (location >= distance || (location % 2 != 0 && distance % 2 == 0)) continue;
-
-      const newValue = value - valueMinus;
+      const newValue = romanArray[i][1] - romanArray[j][1];
+      // If the total value is larger then it should be, don't.
       if (sum + newValue > total) continue;
       sum += newValue;
-      optimize += keyMinus + key;
+      optimize += romanArray[j][0] + romanArray[i][0];
     }
   }
 
