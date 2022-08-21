@@ -8,6 +8,7 @@ const romanValues = new Map([
   ["I", 1]
 ]);
 
+// Convert the romanValues object into an array for efficient indexing.
 const calculateKeys = values => {
   const keyArray = [];
   values.forEach(( value, key ) => keyArray.push([ key, value ]));
@@ -56,11 +57,8 @@ export default (romanNumerals, reduce = false) => {
     sum += romanArray[i][1] * amount;
     optimize += romanArray[i][0].repeat(amount);
 
-    // This loop is for reduces characters, effecient lookup to the roman numeral and lower only.
-    for (let j = i + 1; j < romanArray.length; j++) {
-      // You can only minus roman numerals that are 2 indexes above.
-      if (j - i > 2) break;
-      
+    // This loop is for reduces characters, effecient lookup to the roman numeral and next 2 lower values.
+    for (let j = i + 1, len = Math.max(j + 2, romanArray.length); j < len; j++) {      
       // If a roman numeral index is even, you can not minus a negative index roman numeral, for example VX should always be just V.
       if (!(i % 2) && j % 2) continue;
 
