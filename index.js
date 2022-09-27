@@ -8,14 +8,6 @@ const romanValues = new Map([
   ["I", 1]
 ]);
 
-// Convert the romanValues object into an array for efficient indexing.
-const calculateKeys = values => {
-  const keyArray = [];
-  values.forEach(( value, key ) => keyArray.push([ key, value ]));
-
-  return keyArray;
-}
-
 export default (romanNumerals, reduce = false) => {
   let total = 0;
 
@@ -39,13 +31,13 @@ export default (romanNumerals, reduce = false) => {
     total = romanNumerals;
   }
 
-  let sum = 0;
   let optimize = "";
 
   // Produces an array for a more effecient loop.
-  const romanArray = calculateKeys(romanValues);
+  const romanArray = [];
+  romanValues.forEach(( value, key ) => romanArray.push([ key, value ]));
 
-  for (let i = 0; i < romanArray.length; i++) {
+  for (let i = 0, sum = 0; i < romanArray.length; i++) {
     let amount = (total - sum) / romanArray[i][1];
 
     // Stop when no amount is remaining.
