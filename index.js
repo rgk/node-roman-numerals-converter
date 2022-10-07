@@ -34,8 +34,7 @@ export default (romanNumerals, reduce = false) => {
   let optimize = "";
 
   // Produces an array for a more effecient loop.
-  const romanArray = [];
-  for (const element of romanValues.entries()) romanArray.push(element);
+  const romanArray = Array.from(romanValues.entries());
 
   for (let i = 0, sum = 0; i < romanArray.length; i++) {
     let amount = (total - sum) / romanArray[i][1];
