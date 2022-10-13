@@ -51,7 +51,8 @@ export default (romanNumerals, reduce = false) => {
     // This loop is for reduces characters, effecient lookup to the roman numeral and next 2 lower values.
     for (let j = i + 1, len = Math.max(j + 2, romanArray.length); j < len; j++) {      
       // If a roman numeral index is even, you can not minus a negative index roman numeral, for example VX should always be just V.
-      if (!(i % 2) && j % 2) continue;
+      // Uses bitwise operator & as no roman numeral can be bigger then a 32bit integer and its faster.
+      if (!(i & 1) && j & 1) continue;
 
       const newValue = romanArray[i][1] - romanArray[j][1];
       // If the total value is larger then it should be, don't.
