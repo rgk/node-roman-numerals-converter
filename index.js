@@ -36,7 +36,7 @@ export default (romanNumerals, reduce = false) => {
   const romanArray = Array.from(romanValues.entries());
 
   for (let i = 0, sum = 0; i < romanArray.length; i++) {
-    let amount = total - sum / romanArray[i][1];
+    let amount = (total - sum) / romanArray[i][1];
 
     // Stop when no amount is remaining.
     if (amount <= 0) break;
