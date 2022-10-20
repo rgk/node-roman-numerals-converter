@@ -27,9 +27,8 @@ export default (romanNumerals, reduce = false) => {
     total = parts.reduce((a,b) => a + b);
 
     if (!reduce) return total;
-  } else if (typeof romanNumerals === "number") { // Convert to roman numeral string.
-    total = romanNumerals;
-  }
+  // Convert to roman numeral string.
+  } else if (typeof romanNumerals === "number") total = romanNumerals;
 
   let optimize = "";
 
@@ -42,8 +41,8 @@ export default (romanNumerals, reduce = false) => {
     // Stop when no amount is remaining.
     if (amount <= 0) break;
 
-    // Only allow the roman numeral character to be used 3 times in a row.
-    amount = amount < 3 ? Math.trunc(amount) : 3;
+    // Only allow the roman numeral character to be used 3 times in a row, no floating needed.
+    amount = Math.trunc(Math.min(amount, 3));
 
     sum += romanArray[i][1] * amount;
     optimize += romanArray[i][0].repeat(amount);
