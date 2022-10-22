@@ -1,12 +1,12 @@
-const romanValues = new Map([
-  ["M", 1000],
-  ["D", 500],
-  ["C", 100],
-  ["L", 50],
-  ["X", 10],
-  ["V", 5],
-  ["I", 1]
-]);
+const values = {
+  M: 1000,
+  D: 500,
+  C: 100,
+  L: 50,
+  X: 10,
+  V: 5,
+  I: 1
+};
 
 export default (romanNumerals, reduce = false) => {
   let total = 0;
@@ -16,7 +16,7 @@ export default (romanNumerals, reduce = false) => {
 
     // Break the roman numeral string into parts and convert them to integers.
     for (let i = romanNumerals.length, part = 0, value = 0, last = 0; i; i--, last = value) {
-      if (value = romanValues.get(romanNumerals[i - 1])) {
+      if (value = values[romanNumerals[i - 1]]) {
         part += last > value ? ~value + 1 : value;
       } else return "Invalid";
 
@@ -33,7 +33,7 @@ export default (romanNumerals, reduce = false) => {
   let optimize = "";
 
   // Produces an array for a more effecient loop.
-  const romanArray = Array.from(romanValues.entries());
+  const romanArray = Object.entries(values);
 
   for (let i = 0, sum = 0; i < romanArray.length; i++) {
     let amount = (total - sum) / romanArray[i][1];
