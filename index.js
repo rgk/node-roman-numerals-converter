@@ -35,13 +35,11 @@ export default (romanNumerals, reduce = false) => {
   // Produces an array for a more effecient loop.
   const romanArray = Object.entries(values);
 
-  for (let i = 0, sum = 0; i < romanArray.length; i++) {
-    let amount = (total - sum) / romanArray[i][1];
-
+  for (let i = 0, sum = 0, amount = total / romanArray[i][1]; i < romanArray.length; i++, amount = (total - sum) / romanArray[i][1]) {
     // Stop when no amount is remaining.
     if (amount <= 0) break;
 
-    // Only allow the roman numeral character to be used 3 times in a row, no floating needed.
+    // Only allow the roman numeral character to be used 3 times in a row, no float needed.
     amount = Math.trunc(Math.min(amount, 3));
 
     sum += romanArray[i][1] * amount;
