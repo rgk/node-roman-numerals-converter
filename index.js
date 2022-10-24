@@ -8,6 +8,9 @@ const values = {
   I: 1
 };
 
+// Produces an array for a more effecient loop.
+const romanArray = Object.entries(values);
+
 export default (romanNumerals, reduce = false) => {
   let total = 0;
 
@@ -31,9 +34,6 @@ export default (romanNumerals, reduce = false) => {
   } else if (typeof romanNumerals === "number") total = romanNumerals;
 
   let optimize = "";
-
-  // Produces an array for a more effecient loop.
-  const romanArray = Object.entries(values);
 
   for (let i = 0, sum = 0, amount = total / romanArray[i][1]; i < romanArray.length; i++, amount = (total - sum) / romanArray[i][1]) {
     // Stop when no amount is remaining.
