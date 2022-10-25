@@ -35,7 +35,7 @@ export default (romanNumerals, reduce = false) => {
 
   let optimize = "";
 
-  for (let i = romanArray.findIndex(element => element[1] / 2 < total), sum = 0, amount = 0; 0 < i < romanArray.length; i++) {
+  for (let i = romanArray.findIndex(element => element[1] / 2 < total), sum = 0, amount = 0, len = ~i && romanArray.length; i < len; i++) {
     // Stop when no amount is remaining.
     if (i === -1 || !(amount = (total - sum) / romanArray[i][1])) break;
 
