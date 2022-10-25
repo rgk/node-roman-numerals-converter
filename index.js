@@ -36,9 +36,8 @@ export default (romanNumerals, reduce = false) => {
   let optimize = "";
 
   for (let i = romanArray.findIndex(element => element[1] / 2 < total), sum = 0, amount = 0; 0 < i < romanArray.length; i++) {
-    amount = (total - sum) / romanArray[i][1];
     // Stop when no amount is remaining.
-    if (amount <= 0) break;
+    if (i === -1 || !(amount = (total - sum) / romanArray[i][1])) break;
 
     // Only allow the roman numeral character to be used 3 times in a row, no float needed.
     amount = Math.trunc(Math.min(amount, 3));
