@@ -50,7 +50,7 @@ export default (romanNumerals, reduce = false) => {
       // If a roman numeral index is even, you can not minus a odd index roman numeral, for example VX should always be just V.
       // Uses bitwise operator & as no roman numeral can be bigger then a 32bit integer and its faster.
       // If the total value is larger then it should be, don't.
-      if (!(i & 1) && j & 1 && (value = romanArray[i][1] - romanArray[j][1]) + sum > total) continue;
+      if (!(i & 1) && j & 1 && sum + (value = romanArray[i][1] - romanArray[j][1]) > total) continue;
 
       sum += value;
       optimize += romanArray[j][0] + romanArray[i][0];
