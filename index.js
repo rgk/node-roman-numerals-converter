@@ -49,11 +49,9 @@ export default (romanNumerals, reduce = false) => {
     for (let j = i + 1, value, len = Math.min(j + 3, romanArray.length); j < len; j++) {      
       // If a roman numeral index is even, you can not minus a odd index roman numeral, for example VX should always be just V.
       // Uses bitwise operator & as no roman numeral can be bigger then a 32bit integer and its faster.
-      if (!(i & 1) && j & 1) continue;
-
-      value = romanArray[i][1] - romanArray[j][1];
       // If the total value is larger then it should be, don't.
-      if (sum + value > total) continue;
+      if (!(i & 1) && j & 1 && (value = romanArray[i][1] - romanArray[j][1]) + sum > total) continue;
+
       sum += value;
       optimize += romanArray[j][0] + romanArray[i][0];
     }
