@@ -27,7 +27,7 @@ export default (romanNumerals, reduce = false) => {
     }
 
     // Add it all up and return if reduce is not set.
-    if (total = parts.reduce((a,b) => a + b) && !reduce) return total;
+    if ((total = parts.reduce((a,b) => a + b)) && !reduce) return total;
   // Convert to roman numeral string.
   } else if (typeof romanNumerals === "number") total = romanNumerals;
 
