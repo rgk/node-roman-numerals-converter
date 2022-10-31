@@ -38,10 +38,8 @@ export default (romanNumerals, reduce = false) => {
     if (!(amount = (total - sum) / romanArray[i][1])) break;
 
     // Only allow the roman numeral character to be used 3 times in a row, no float needed.
-    amount = Math.min(Math.trunc(amount), 3);
-
+    optimize += romanArray[i][0].repeat(amount = Math.min(Math.trunc(amount), 3));
     sum += romanArray[i][1] * amount;
-    optimize += romanArray[i][0].repeat(amount);
 
     // This loop is for reducing characters, effecient lookup to the roman numeral and next 2 lower values.
     for (let j = i + 1, value, len = Math.min(j + 3, romanArray.length); j < len; j++) {      
