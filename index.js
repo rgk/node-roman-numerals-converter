@@ -35,7 +35,7 @@ export default (romanNumerals, reduce = false) => {
 
   for (
     let i = list.findIndex(element => element[1] / 2 < total), sum = 0, amount = 0, len = (~i) ? list.length : i;
-    i < len && amount = (total - sum) / list[i][1]; // Stop when no amount is remaining.
+    i < len && (amount = (total - sum) / list[i][1]); // Stop when no amount is remaining.
     i++
   ) {
     // Only allow the roman numeral character to be used 3 times in a row, no float needed.
