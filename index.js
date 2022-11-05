@@ -33,10 +33,11 @@ export default (romanNumerals, reduce = false) => {
 
   let optimize = "";
 
-  for (let i = list.findIndex(element => element[1] / 2 < total), sum = 0, amount = 0, len = (~i) ? list.length : i; i < len; i++) {
-    // Stop when no amount is remaining.
-    if (!(amount = (total - sum) / list[i][1])) break;
-
+  for (
+    let i = list.findIndex(element => element[1] / 2 < total), sum = 0, amount = 0, len = (~i) ? list.length : i;
+    i < len && amount = (total - sum) / list[i][1]; // Stop when no amount is remaining.
+    i++
+  ) {
     // Only allow the roman numeral character to be used 3 times in a row, no float needed.
     optimize += list[i][0].repeat(amount = Math.min(Math.trunc(amount), 3));
     sum += list[i][1] * amount;
