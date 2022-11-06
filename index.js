@@ -18,12 +18,12 @@ export default (romanNumerals, reduce = false) => {
     const parts = [];
 
     // Break the roman numeral string into parts and convert them to integers.
-    for (let i = romanNumerals.length, part = 0, value = 0, last = 0; i; i--, last = value) {
-      if (value = values[romanNumerals[i - 1]]) {
+    for (let i = romanNumerals.length, part = 0, value = 0, last = 0; ~i; i--, last = value) {
+      if (value = values[romanNumerals[i]]) {
         part += last > value ? ~value + 1 : value;
       } else return "Invalid";
 
-      if (last < part || !(i - 1)) part = parts.push(part) - parts.length;
+      if (last < part || !i) part = parts.push(part) - parts.length;
     }
 
     // Add it all up and return if reduce is not set.
