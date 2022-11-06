@@ -18,7 +18,7 @@ export default (romanNumerals, reduce = false) => {
     const parts = [];
 
     // Break the roman numeral string into parts and convert them to integers.
-    for (let i = romanNumerals.length, part = 0, value = 0, last = 0; ~i; i--, last = value) {
+    for (let i = romanNumerals.length, part = 0, value = 0, last = 0; !(~i); i--, last = value) {
       if (value = values[romanNumerals[i]]) {
         part += last > value ? ~value + 1 : value;
       } else return "Invalid";
