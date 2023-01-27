@@ -1,3 +1,4 @@
+// Roman numeral symbol to value mapping.
 const values = {
   M: 1000,
   D: 500,
@@ -50,6 +51,7 @@ export default (romanNumerals, reduce = false) => {
       if ((!(i & 1) && j & 1) || (value = list[i][1] - list[j][1]) + sum > total) continue;
 
       sum += value;
+      // Add minus value to standard value.
       optimize += list[j][0] + list[i][0];
     }
   }
